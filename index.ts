@@ -17,7 +17,7 @@ let courses: Course[] = [
 ];
 
 const filteredCourses = (courses: Course[], range: PriceRange): Course[] => {
-  const nullToNInf = (num1: number, num2: number): number[] => {
+  const nullToInf = (num1: number, num2: number): number[] => {
     if (num1 === null) num1 = -Infinity;
     if (num2 === null) num2 = Infinity;
 
@@ -33,7 +33,7 @@ const filteredCourses = (courses: Course[], range: PriceRange): Course[] => {
 
 
   return courses
-    .map(course => ({ ...course, prices: nullToNInf(course.prices[0], course.prices[1]) }))
+    .map(course => ({ ...course, prices: nullToInf(course.prices[0], course.prices[1]) }))
     .filter(course => {
       const [courseStart, courseEnd] = course.prices;
       return courseStart >= start && courseEnd <= end;
